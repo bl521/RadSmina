@@ -1,0 +1,13 @@
+# Ignore SLURM job logs
+*.o*
+*.e*
+
+# Byte-code & build artefacts
+__pycache__/
+*.pyc
+build/
+dist/
+
+# Large data
+data/
+results/

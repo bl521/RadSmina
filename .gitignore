@@ -11,3 +11,9 @@ dist/
 # Large data
 data/
 results/
+
+# Jupyter auto-save files
+**/.ipynb_checkpoints/
+
+# Build artefacts
+*.egg-info/

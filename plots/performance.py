@@ -102,17 +102,17 @@ def compare_boxplots(rad_json_path, smina_json_paths, random_json_path, lowest_n
     plt.show()
 
 if __name__ == "__main__":
-    rad_json = "/rds/general/user/bl521/home/rad/examples/m32ef400_scores_rock1.json"
+    rad_json = scores("m16ef400_scores_rock1.json")
     smina_jsons = [
-        "/rds/general/user/bl521/home/rad/examples/goldilocks_scores0.json",
-        "/rds/general/user/bl521/home/rad/examples/goldilocks_scores1.json",
-        "/rds/general/user/bl521/home/rad/examples/goldilocks_scores2.json",
-        "/rds/general/user/bl521/home/rad/examples/goldilocks_scores3.json",
-        "/rds/general/user/bl521/home/rad/examples/goldilocks_scores4.json",
-        "/rds/general/user/bl521/home/rad/examples/goldilocks_scores5.json",
-        "/rds/general/user/bl521/home/rad/examples/goldilocks_scores6.json"
+        scores("goldilocks_scores0.json"),
+        scores("goldilocks_scores1.json"),
+        scores("goldilocks_scores2.json"),
+        scores("goldilocks_scores3.json"),
+        scores("goldilocks_scores4.json"),
+        scores("goldilocks_scores5.json"),
+        scores("goldilocks_scores6.json")
     ]
-    random_json = "/rds/general/user/bl521/home/rad/examples/random_10k_dock_results.json"
+    random_json = scores("random_10k_scores.json")
     compare_boxplots(rad_json, smina_jsons, random_json, lowest_n=10)
 
 

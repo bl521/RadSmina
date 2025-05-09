@@ -84,12 +84,12 @@ def main():
     big_dict = build_ligand_dict(super_folder)
     print(f"[INFO] Found {len(big_dict)} ligands across all super_*.mol2 files.")
     
-    # 2) Randomly sample 10,000 or however many if we have fewer
+    # 2) Randomly sample 10,000 
     sample_size = 10000
     all_ids = list(big_dict.keys())
     chosen_ids = random.sample(all_ids, min(sample_size, len(all_ids)))
     
-    # 3) Suppose we have a known receptor in .pdbqt
+    # 3) Choose the receptor and ligand
     receptor_pdb = "/rds/general/user/bl521/home/smina_docking/dudez/ROCK1/rec.crg.pdb"
     target_pdb   = "/rds/general/user/bl521/home/smina_docking/dudez/ROCK1/xtal-lig.pdb"
     
@@ -103,7 +103,7 @@ def main():
         if best_score is not None:
             results[lid] = [smi, best_score]
         else:
-            results[lid] = [smi, None]   # or skip storing if we prefer
+            results[lid] = [smi, None] 
     
     # 5) Save results to JSON
     out_file = "random_10k_dock_results.json"

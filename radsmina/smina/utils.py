@@ -77,7 +77,7 @@ def retrieve_mol2_file(ligand_id, big_index):
         return None
     mol2_path, offset = big_index[ligand_id]
 
-    block = get_ligand_block(mol2_path, offset)  # from your existing function
+    block = get_ligand_block(mol2_path, offset)
     if not block:
         return None
 

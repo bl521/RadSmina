@@ -8,7 +8,7 @@ from rdkit.Chem import AllChem, DataStructs
 from itertools import combinations
 from scipy.stats import pearsonr
 from tqdm import tqdm
-from utils.paths import examples, scores
+from utils.paths import scores_path
 
 def load_json_file(json_path):
     with open(json_path, 'r') as f:
@@ -84,7 +84,7 @@ def pairwise_similarity_vs_score_diff(entries, radius=2, nBits=1024):
     return corr, pval
 
 def main():
-    json_path = scores("m16ef400_scores_rock1.json") 
+    json_path = scores_path("m16ef400_scores_rock1.json") 
     entries = load_json_file(json_path)
 
     entries.sort(key=lambda x: x[1])  # x[1] is the score

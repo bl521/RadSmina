@@ -1,7 +1,7 @@
 import json
 import numpy as np
 import matplotlib.pyplot as plt
-from utils.paths import examples, scores
+from utils.paths import scores_path
 
 # Global cutoff for "virtual active" definition
 VIRTUAL_ACTIVE_SCORE_CUTOFF = -10.0
@@ -29,20 +29,20 @@ def load_traversal_order(json_path):
 def main():
     # 1) Gather the "Smina" virtual actives from multiple JSONs
     smina_jsons = [
-        scores("goldilocks_scores0.json"),
-        scores("goldilocks_scores1.json"),
-        scores("goldilocks_scores2.json"),
-        scores("goldilocks_scores3.json"),
-        scores("goldilocks_scores4.json"),
-        scores("goldilocks_scores5.json"),
-        scores("goldilocks_scores6.json")
+        scores_path("goldilocks_scores0.json"),
+        scores_path("goldilocks_scores1.json"),
+        scores_path("goldilocks_scores2.json"),
+        scores_path("goldilocks_scores3.json"),
+        scores_path("goldilocks_scores4.json"),
+        scores_path("goldilocks_scores5.json"),
+        scores_path("goldilocks_scores6.json")
     ]
     smina_virtual_actives = collect_smina_virtual_actives(smina_jsons, score_cutoff=-10.0)
     print(f"Number of Smina-based virtual actives: {len(smina_virtual_actives)}")
 
     # 2) For each method, load the json files
-    rad_json = scores("m16ef400_scores_rock1.json")
-    random_json = scores("random_10k_scores.json")
+    rad_json = scores_path("m16ef400_scores_rock1.json")
+    random_json = scores_path("random_10k_scores.json")
 
     rad_traversal = load_traversal_order(rad_json)
     rad_ids = set(rad_traversal)

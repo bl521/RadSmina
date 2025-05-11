@@ -17,3 +17,6 @@ results/
 
 # Build artefacts
 *.egg-info/
+
+# Compiled extension modules
+*.so   

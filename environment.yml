@@ -1,0 +1,19 @@
+name: radsmina
+channels:
+  - defaults
+  - anaconda
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.11.8
+  - graph-tool
+  - jupyter
+  - numpy
+  - pybind11
+  - tqdm
+  - rdkit
+  - openbabel
+  - smina
+  - seaborn
+  - pip
+  - matplotlib 

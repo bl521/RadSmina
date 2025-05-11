@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import matplotlib.cm as cm
 from matplotlib.lines import Line2D
+from utils.paths import scores_path
 
 def load_rad_scores(rad_json_path):
     with open(rad_json_path, "r") as f:
@@ -102,17 +103,17 @@ def compare_boxplots(rad_json_path, smina_json_paths, random_json_path, lowest_n
     plt.show()
 
 if __name__ == "__main__":
-    rad_json = scores("m16ef400_scores_rock1.json")
+    rad_json = scores_path("m16ef400_scores_rock1.json")
     smina_jsons = [
-        scores("goldilocks_scores0.json"),
-        scores("goldilocks_scores1.json"),
-        scores("goldilocks_scores2.json"),
-        scores("goldilocks_scores3.json"),
-        scores("goldilocks_scores4.json"),
-        scores("goldilocks_scores5.json"),
-        scores("goldilocks_scores6.json")
+        scores_path("goldilocks_scores0.json"),
+        scores_path("goldilocks_scores1.json"),
+        scores_path("goldilocks_scores2.json"),
+        scores_path("goldilocks_scores3.json"),
+        scores_path("goldilocks_scores4.json"),
+        scores_path("goldilocks_scores5.json"),
+        scores_path("goldilocks_scores6.json")
     ]
-    random_json = scores("random_10k_scores.json")
+    random_json = scores_path("random_10k_scores.json")
     compare_boxplots(rad_json, smina_jsons, random_json, lowest_n=10)
 
 

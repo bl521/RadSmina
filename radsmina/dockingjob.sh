@@ -7,4 +7,4 @@ source ~/anaconda3/bin/activate radsmina
  
 cd $PBS_O_WORKDIR
 
-python3 $PBS_O_WORKDIR/smina_dock.py
+python3 $PBS_O_WORKDIR/DUDEZ_smina.py

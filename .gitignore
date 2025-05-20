@@ -8,9 +8,8 @@ __pycache__/
 build/
 dist/
 
-# Large data
-data/
-results/
+# Ignore HX1 / PBS scratch logs
+rds/general/ephemeral/
 
 # Jupyter auto-save files
 **/.ipynb_checkpoints/

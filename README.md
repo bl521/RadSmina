@@ -39,7 +39,8 @@ RadSmina/                     # project root ── an installable Python packag
 │   │
 │   ├─ dockingjob.sh          # hpc example script (128 cores, 28 h wall)
 │   ├─ DUDEZ_smina_with_scores.ipynb*  # **FAST replay** – reuse pre-computed SMINA scores → traverse graph → emit JSONs for plotting
-│   └─ DUDEZ_smina.ipynb*                # **FULL pipeline** – build HNSW → RAD traversal → run SMINA docking on-the-fly → write score JSONs
+│   ├─ DUDEZ_smina.ipynb*                # **FULL pipeline** – build HNSW → RAD traversal → run SMINA docking on-the-fly → write score JSONs
+│   └─ DUDEZ_smina.py*                # same as DUDEZ_smina.ipynb, refactored as a Python script for HPC batch jobs
 │
 ├─ rds/                       # lightweight fork of Hall & Keiser’s RAD utilities
 │
@@ -57,7 +58,16 @@ RadSmina/                     # project root ── an installable Python packag
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **DUDEZ\_smina.ipynb**               | **End-to-end demo**. Builds the HNSW, performs RAD traversal, calls SMINA in real time, and saves the resulting `<setting>_scores_<target>.json` files.                 |
 | **DUDEZ\_smina\_with\_scores.ipynb** | **Fast replay**. Loads a pre-computed SMINA score table, reruns the traversal without docking, and writes the same JSON output for the plotting scripts. |
+| Path                                 | Purpose                                                                                                                      |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| **DUDEZ\_smina.ipynb**               | **End-to-end demo**. Builds the HNSW, performs RAD traversal, invokes SMINA live, and saves `<setting>_scores_<target>.json`.|
+| **DUDEZ\_smina\_with\_scores.ipynb** | **Quick replay**. Loads an existing SMINA score table, reruns the traversal (no docking), and outputs JSONs for plotting.    |
+| **DUDEZ\_smina.py**                  | Command-line version of `DUDEZ_smina.ipynb`.  Designed for submission to HPC via `dockingjob.sh`—no Jupyter kernel required. |
+| **dockingjob.sh**                    | Example HX1 PBS script: requests 128 cores, 12 h wall-time, and executes `python DUDEZ_smina.py`.                            |
 
+> **Tip:**
+> 1. Use DUDEZ_smina_with_scores.ipynb if you only want to regenerate the plots without waiting for docking; run DUDEZ_smina.ipynb for the full RAD-SMINA workflow.
+> 2. Use DUDEZ_smina.py + dockingjob.sh for large production runs on HX1; use the notebooks for interactive experimentation and debugging.
 
 ## 3 · Quick start
 ```bash
@@ -82,8 +92,39 @@ pip install -e .
 | `FP_RADIUS`       | *ECFP bond radius*                  | **2**         |
 
 ## 5 · What Gets Saved After a Traversal?
-The traverseHNSW() helper walks the graph, calls the score_fn, and returns a dictionary scores_by_node.
+The `traverseHNSW()` helper walks the graph, calls the `score_fn`, and returns a dictionary `scores_by_node`.\
 At the end of each run we persist that dictionary as a single JSON file:
+```python
+traversed_nodes = traverseHNSW(hnsw_layer_graphs,
+                               score_fn,
+                               NUM_TO_TRAVERSE)
+
+with open("zid_scores_rock1.json", "w") as f:
+    json.dump(scores_by_node, f, indent=2)
+```
+### File location & naming
+Default path → RadSmina/scores/ (or the folder set by
+RADSMINA_SCORES, see § 7).
+
+Recommended pattern → <target>_<setting>_scores.json, e.g.
+m16ef400_scores_rock1.json.
+
+### JSON schema
+| Key (str)   | Value (list)                       | Example                                           |
+| ----------- | ---------------------------------- | ------------------------------------------------- |
+| `ligand_id` | `[node_id, SMILES, docking_score]` | `"ZINC00012345": [8261, "CCN(C)C(=O)...", -11.2]` |
+
+
+docking_score – best score returned by SMINA (np.inf if docking failed)
+### Re-using the files
+The plotting utilities (`enrichment_plot.py`, `performance.py`,
+`correlation.py`) assume exactly this layout; no edits are required as
+long as the filenames and schema are unchanged.
+
+If you wish to keep multiple traversals for the same target, simply give
+each JSON a unique filename (e.g. `m32ef400_scores_rock1_repeat2.json`);
+the scripts accept a list of paths.
+
 
 ## 6 · Reproducing the paper plots
 You can regenerate every figure that appears in the report from the command line — no notebook editing required.

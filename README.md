@@ -118,7 +118,8 @@ the scripts accept a list of paths.
 
 ## 6 · Reproducing the paper plots
 You can regenerate every figure that appears in the report from the command line — no notebook editing required.
-All plot drivers live under plots/ and point to the JSON score files produced by radsmina (or the bundled examples in scores/).
+All plot drivers live under `plots/` and point to the JSON score files produced by radsmina (or the bundled examples in `radsmina/scores/`).\
+If you want to redirect the scripts to your own results, change all the json files in the scripts and make them to your own result paths.
 | Script (`plots/…`)   | Figure(s) it produces             | What it shows                                                                                                      |        
 | -------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------ | 
 | `enrichment_plot.py` | `coverage_<setting>.png`          | Early-recall/enrichment curves (RAD vs. random traversal)                                                          |        |                                |

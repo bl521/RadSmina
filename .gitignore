@@ -19,3 +19,6 @@ rds/general/ephemeral/
 
 # Compiled extension modules
 *.so   
+
+# Too big file
+radsmina/data/super_goldilocks/radsmina/data/super_goldilocks/

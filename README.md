@@ -24,7 +24,7 @@ RadSmina/                     # project root ── an installable Python packag
 │   ├─ data/                  # example data to reproduce the results
 │   │   ├─ receptor_files/       # PDBQT receptors used by SMINA
 │   │   ├─ reclig_files/         # reference ligands (define autobox)
-│   │   ├─ super_goldilocks (yet-to-be-published)/     # trimmed 3-D mol2s (132 k)
+│   │   ├─ super_goldilocks(yet-to-be-published)/     # trimmed 3-D mol2s (132 k)
 │   │   └─ goldilocks_smiles.pkl # text SMILES used for HNSW construction
 │   │
 │   ├─ smina/                 # **thin Python wrapper around SMINA**

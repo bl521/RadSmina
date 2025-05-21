@@ -21,4 +21,4 @@ rds/general/ephemeral/
 *.so   
 
 # Too big file
-radsmina/data/super_goldilocks/radsmina/data/super_goldilocks/
+radsmina/data/super_goldilocks/

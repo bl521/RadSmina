@@ -54,14 +54,10 @@ RadSmina/                     # project root ── an installable Python packag
 └─ setup.py
 ```
 ### **Main RAD+SMINA pipeline**
-| Path                                 | Purpose                                                                                                                                                  |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **DUDEZ\_smina.ipynb**               | **End-to-end demo**. Builds the HNSW, performs RAD traversal, calls SMINA in real time, and saves the resulting `<setting>_scores_<target>.json` files.                 |
-| **DUDEZ\_smina\_with\_scores.ipynb** | **Fast replay**. Loads a pre-computed SMINA score table, reruns the traversal without docking, and writes the same JSON output for the plotting scripts. |
 | Path                                 | Purpose                                                                                                                      |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | **DUDEZ\_smina.ipynb**               | **End-to-end demo**. Builds the HNSW, performs RAD traversal, invokes SMINA live, and saves `<setting>_scores_<target>.json`.|
-| **DUDEZ\_smina\_with\_scores.ipynb** | **Quick replay**. Loads an existing SMINA score table, reruns the traversal (no docking), and outputs JSONs for plotting.    |
+| **DUDEZ\_smina\_with\_scores.ipynb** | **Fast replay**. Loads a pre-computed SMINA score table, reruns the traversal without docking, and writes the same JSON output for the plotting scripts.    |
 | **DUDEZ\_smina.py**                  | Command-line version of `DUDEZ_smina.ipynb`.  Designed for submission to HPC via `dockingjob.sh`—no Jupyter kernel required. |
 | **dockingjob.sh**                    | Example HX1 PBS script: requests 128 cores, 12 h wall-time, and executes `python DUDEZ_smina.py`.                            |
 
@@ -82,14 +78,6 @@ conda activate radsmina
 # 3 Install the code in editable mode
 pip install -e .
 ```
-
-## 4 · Configuration
-| Parameter         | Purpose                             | Typical value |
-| ----------------- | ----------------------------------- | ------------- |
-| `M`               | max # neighbours per HNSW node      | **16**        |
-| `ef_construction` | breadth when building HNSW          | **400**       |
-| `FP_LENGTH`       | *ECFP bit-vector length*            | **1024**      |
-| `FP_RADIUS`       | *ECFP bond radius*                  | **2**         |
 
 ## 5 · What Gets Saved After a Traversal?
 The `traverseHNSW()` helper walks the graph, calls the `score_fn`, and returns a dictionary `scores_by_node`.\

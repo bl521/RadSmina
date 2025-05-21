@@ -79,7 +79,7 @@ conda activate radsmina
 pip install -e .
 ```
 
-## 5 · What Gets Saved After a Traversal?
+## 4 · What Gets Saved After a Traversal?
 The `traverseHNSW()` helper walks the graph, calls the `score_fn`, and returns a dictionary `scores_by_node`.\
 At the end of each run we persist that dictionary as a single JSON file:
 ```python
@@ -116,7 +116,7 @@ each JSON a unique filename (e.g. `m32ef400_scores_rock1_repeat2.json`);
 the scripts accept a list of paths.
 
 
-## 6 · Reproducing the paper plots
+## 5 · Reproducing the paper plots
 You can regenerate every figure that appears in the report from the command line — no notebook editing required.
 All plot drivers live under `plots/` and point to the JSON score files produced by radsmina (or the bundled examples in `radsmina/scores/`).\
 If you want to redirect the scripts to your own results, change all the json files in the scripts and make them to your own result paths.
@@ -126,7 +126,7 @@ If you want to redirect the scripts to your own results, change all the json fil
 | `performance.py`     | `performance_<setting>_plot.png` | Box-plots of the full docking-score distributions, highlighting the 10 lowest scores with a frequency colour-scale  |        |                                |
 | `correlation.py`     | `correlationplot<num>/hexbinplot<num>.png`          | Pair-wise Tanimoto similarity vs. Score scatter & Pearson-r annotation                           |
 
-## 7 · Known issues / TODO
+## 6 · Known issues / TODO
 | ID     | Item                                                                                                  | Current status                                                                                                                                   | Planned action                                                                                                                                                                                                                                                                                                                                               |
 | ------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **#1** | **`super_goldilocks/` omitted** – the 132 k trimmed `.mol2` files are *not* in the repository (≈7 GB) | Removed from the Git history to keep the repo push-friendly (<100 MB). Notebook examples that reference this folder will error if it is missing. | • Provide a helper script (`fetch_goldilocks.sh`) that downloads the archive from Zenodo once the dataset is published.<br>• Document the exact SHA256 of the tarball so users can verify integrity.<br>• Add graceful checks to notebooks (`if not Path.exists(): raise FileNotFoundError(...)`) with a clear message linking to the download instructions. |

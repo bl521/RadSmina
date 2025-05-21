@@ -91,19 +91,21 @@ with open("zid_scores_rock1.json", "w") as f:
     json.dump(scores_by_node, f, indent=2)
 ```
 ### File location & naming
-Default path → RadSmina/scores/ (or the folder set by
-RADSMINA_SCORES, see § 7).
+Default path → `RadSmina/radsmina/` (where your jupyter notebook is located).
 
-Recommended pattern → <target>_<setting>_scores.json, e.g.
-m16ef400_scores_rock1.json.
+Recommended pattern → `<setting>_scores_<target>_.json`, e.g.`m16ef400_scores_rock1.json`.
 
 ### JSON schema
 | Key (str)   | Value (list)                       | Example                                           |
 | ----------- | ---------------------------------- | ------------------------------------------------- |
 | `ligand_id` | `[node_id, SMILES, docking_score]` | `"ZINC00012345": [8261, "CCN(C)C(=O)...", -11.2]` |
 
+`node_id` – integer index of the ligand in the HNSW graph
 
-docking_score – best score returned by SMINA (np.inf if docking failed)
+`SMILES` – canonical SMILES used for fingerprinting
+
+`docking_score` – best score returned by SMINA (`np.inf` if docking failed)
+
 ### Re-using the files
 The plotting utilities (`enrichment_plot.py`, `performance.py`,
 `correlation.py`) assume exactly this layout; no edits are required as

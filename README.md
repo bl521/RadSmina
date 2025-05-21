@@ -62,8 +62,8 @@ RadSmina/                     # project root ── an installable Python packag
 | **dockingjob.sh**                    | Example HX1 PBS script: requests 128 cores, 12 h wall-time, and executes `python DUDEZ_smina.py`.                            |
 
 > **Tip:**
-> 1. Use DUDEZ_smina_with_scores.ipynb if you only want to regenerate the plots without waiting for docking; run DUDEZ_smina.ipynb for the full RAD-SMINA workflow.
-> 2. Use DUDEZ_smina.py + dockingjob.sh for large production runs on HX1; use the notebooks for interactive experimentation and debugging.
+> 1. Use `DUDEZ_smina_with_scores.ipynb` if you only want to regenerate the plots without waiting for docking; run `DUDEZ_smina.ipynb` for the full RAD-SMINA workflow.
+> 2. Use `DUDEZ_smina.py` + `dockingjob.sh` for large production runs on HX1; use the notebooks for interactive experimentation and debugging.
 
 ## 3 · Quick start
 ```bash

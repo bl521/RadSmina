@@ -15,7 +15,7 @@ RadSmina/                     # project root ── an installable Python packag
 │   ├─ correlation_plots/        # examples of the correlation graphs generated
 │   ├─ enrichment_plot.py       # → draws early-recall curves
 │   ├─ performance.py           # → box-plots of docking score distributions
-│   └─ correlation.py           # → pocket / ligand property vs recall
+│   └─ correlation.py           # → pairwise Tanimoto similarities vs. score difference plots
 │
 ├─ rad/                       # upstream RAD (Hall & Keiser) for reference
 │
@@ -30,7 +30,7 @@ RadSmina/                     # project root ── an installable Python packag
 │   ├─ smina/                 # **thin Python wrapper around SMINA**
 │   │   ├─ temp_output/          # docking poses & log files (auto-cleaned)
 │   │   ├─ __init__.py
-│   │   ├─ dock.py              # run_smina(), parse scores
+│   │   ├─ dock.py              # run dock_with_smins(), parse scores
 │   │   └─ utils.py             # helper functions for smina docking
 │   │
 │   ├─ scores/                # example docked socres ready for use
@@ -57,9 +57,9 @@ RadSmina/                     # project root ── an installable Python packag
 | Path                                 | Purpose                                                                                                                      |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | **DUDEZ\_smina.ipynb**               | **End-to-end demo**. Builds the HNSW, performs RAD traversal, invokes SMINA live, and saves `<setting>_scores_<target>.json`.|
-| **DUDEZ\_smina\_with\_scores.ipynb** | **Fast replay**. Loads a pre-computed SMINA score table, reruns the traversal without docking, and writes the same JSON output for the plotting scripts.    |
+| **DUDEZ\_smina\_with\_scores.ipynb** | **Fast replay**. Loads a pre-computed SMINA score json, reruns the traversal without docking, and writes the same JSON output for the plotting scripts.    |
 | **DUDEZ\_smina.py**                  | Command-line version of `DUDEZ_smina.ipynb`.  Designed for submission to HPC via `dockingjob.sh`—no Jupyter kernel required. |
-| **dockingjob.sh**                    | Example HX1 PBS script: requests 128 cores, 12 h wall-time, and executes `python DUDEZ_smina.py`.                            |
+| **dockingjob.sh**                    | Example HX1 PBS script: requests 128 cores, 28 h wall-time, and executes `python3 DUDEZ_smina.py`.                            |
 
 > **Tip:**
 > 1. Use `DUDEZ_smina_with_scores.ipynb` if you only want to regenerate the plots without waiting for docking; run `DUDEZ_smina.ipynb` for the full RAD-SMINA workflow.

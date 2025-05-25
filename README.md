@@ -42,11 +42,8 @@ RadSmina/                     # project root ── an installable Python packag
 │   ├─ DUDEZ_smina.ipynb*                # **FULL pipeline** – build HNSW → RAD traversal → run SMINA docking on-the-fly → write score JSONs
 │   └─ DUDEZ_smina.py*                # same as DUDEZ_smina.ipynb, refactored as a Python script for HPC batch jobs
 │
-├─ rds/                       # lightweight fork of Hall & Keiser’s RAD utilities
-│
 ├─ utils/                     # project-agnostic helpers
-│   ├─ paths.py               # centralises folder & file paths (edit here once)
-│   └─ __pycache__/
+│   └─ paths.py               # centralises folder & file paths (edit here once)
 │
 ├─ .gitignore
 ├─ environment.yml

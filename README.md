@@ -8,7 +8,21 @@
 The original **RAD** workflow couples an HNSW graph with DOCK 3.7 to avoid brute-force docking of giga-scale libraries.  
 This repository replaces DOCK 3.7 with **SMINA**, re-applying **RAD** on a 132 k-molecule subset of the DUDE-Z “Goldilocks” set.
 
-## 2 · Repository layout
+## 2 · Quick start
+```bash
+# 1  Clone
+git clone https://github.com/bl521/RadSmina.git
+cd RadSmina
+
+# 2  Create conda env
+conda env create -f environment.yml
+conda activate radsmina
+
+# 3 Install the code in editable mode
+pip install -e .
+```
+
+## 3 · Repository layout
 ```bash
 RadSmina/                     # project root ── an installable Python package
 │
@@ -80,20 +94,6 @@ rm radsmina/data/super_goldilocks.tar.gz
 > **Tip:**
 > 1. Use `DUDEZ_smina_with_scores.ipynb` if you only want to regenerate the plots without waiting for docking; run `DUDEZ_smina.ipynb` for the full RAD-SMINA workflow.
 > 2. Use `DUDEZ_smina.py` + `dockingjob.sh` for large production runs on HX1; use the notebooks for interactive experimentation and debugging.
-
-## 3 · Quick start
-```bash
-# 1  Clone
-git clone https://github.com/bl521/RadSmina.git
-cd RadSmina
-
-# 2  Create conda env
-conda env create -f environment.yml
-conda activate radsmina
-
-# 3 Install the code in editable mode
-pip install -e .
-```
 
 ## 4 · What Gets Saved After a Traversal?
 The `traverseHNSW()` helper walks the graph, calls the `score_fn`, and returns a dictionary `scores_by_node`.\

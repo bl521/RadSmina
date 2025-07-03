@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #PBS -lwalltime=28:00:00 
-#PBS -lselect=2:ncpus=64:mem=64gb 
+#PBS -lselect=1:ncpus=8:mem=64gb 
 
 source ~/anaconda3/bin/activate radsmina
  

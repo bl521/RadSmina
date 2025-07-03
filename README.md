@@ -54,7 +54,7 @@ RadSmina/                     # project root ── an installable Python packag
 └─ setup.py
 ```
 
-### Downloading Super Goldilocks Dataset
+### **Downloading Super Goldilocks Dataset**
 
 The super_goldilocks dataset (132,884 ligand mol2 files) is too large for GitHub. Follow these steps to download and extract it:
 

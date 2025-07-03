@@ -11,7 +11,7 @@ def dock_with_smina(ligand, receptor, rec_lig):
         "--out", docked_output,
         "--autobox_ligand", rec_lig,
         "--autobox_add", "4",
-        "--exhaustiveness", "1",
+        "--exhaustiveness", "8",
         "--num_modes", "1"
     ]
     docking_process = subprocess.run(cmd_dock, capture_output=True, text=True)

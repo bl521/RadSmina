@@ -20,6 +20,8 @@ conda activate radsmina
 
 # 3 Install the code in editable mode
 pip install -e .
+
+# 4 Download Goldilocks Dataset -> see the next section
 ```
 
 ## 3 · Repository layout

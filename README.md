@@ -27,7 +27,7 @@ RadSmina/                     # project root ── an installable Python packag
 │   ├─ data/                  # example data to reproduce the results
 │   │   ├─ receptor_files/       # PDBQT receptors used by SMINA
 │   │   ├─ reclig_files/         # reference ligands (define autobox)
-│   │   ├─ super_goldilocks(yet-to-be-published)/     # trimmed 3-D mol2s (132 k)
+│   │   ├─ super_goldilocks/     # trimmed 3-D mol2s (132 k)- *Download required* see below for instructions
 │   │   └─ goldilocks_smiles.pkl # text SMILES used for HNSW construction
 │   │
 │   ├─ smina/                 # **thin Python wrapper around SMINA**
@@ -53,6 +53,22 @@ RadSmina/                     # project root ── an installable Python packag
 ├─ README.md
 └─ setup.py
 ```
+
+### **Downloading Super Goldilocks Dataset**
+
+The super_goldilocks dataset (132,884 ligand mol2 files) is too large for GitHub. Follow these steps to download and extract it:
+
+```bash
+# Download archive
+curl -o radsmina/data/super_goldilocks.tar.gz https://zenodo.org/records/15802558/files/super_goldilocks.tar.gz
+
+# Extract to correct location
+tar -xzvf radsmina/data/super_goldilocks.tar.gz -C radsmina/data/
+
+# Remove archive (optional)
+rm radsmina/data/super_goldilocks.tar.gz
+```
+
 ### **Main RAD+SMINA pipeline**
 | Path                                 | Purpose                                                                                                                      |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -129,8 +145,6 @@ If you want to redirect the scripts to your own results, change all the json fil
 ## 6 · Known issues / TODO
 | ID     | Item                                                                                                  | Current status                                                                                                                                   | Planned action                                                                                                                                                                                                                                                                                                                                               |
 | ------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **#1** | **`super_goldilocks/` omitted** – the 132 k trimmed `.mol2` files are *not* in the repository (≈700 MB) | Removed from the Git history to keep the repo push-friendly (<100 MB). Notebook examples that reference this folder will error if it is missing. | • Provide a helper script (`fetch_goldilocks.sh`) that downloads the archive from Zenodo once the dataset is published.<br>• Document the exact SHA256 of the tarball so users can verify integrity.<br>• Add graceful checks to notebooks (`if not Path.exists(): raise FileNotFoundError(...)`) with a clear message linking to the download instructions. |
-> **Quick workaround:**
-> Create RadSmina/radsmina/data/super_goldilocks/ and place your own .mol2 files there. All notebooks and scripts will then run without modification.
+| **#1** | **`super_goldilocks/` omitted** – the 132 k trimmed `.mol2` files are *not* in the repository (≈700 MB) |SOLVED| N/A |
 
 

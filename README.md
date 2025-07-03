@@ -1,6 +1,9 @@
 # RAD-SMINA 📈🧬  
 *Retrieval-Augmented Docking with SMINA on the DUDE-Z “Goldilocks” library*
 
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org)
+[![Licence: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ## 1 · Project motivation
 The original **RAD** workflow couples an HNSW graph with DOCK 3.7 to avoid brute-force docking of giga-scale libraries.  
 This repository replaces DOCK 3.7 with **SMINA**, re-applying **RAD** on a 132 k-molecule subset of the DUDE-Z “Goldilocks” set.
